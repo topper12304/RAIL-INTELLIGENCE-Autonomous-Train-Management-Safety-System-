@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rail Intelligence Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>🚂 RAIL-INTELLIGENCE Simulator</h1>
+<p>Open API docs: <a href="http://127.0.0.1:8000/docs" target="_blank">Swagger UI</a></p>
+
+<div class="container">
+
+    <!-- Network Module (JSON only due to complexity) -->
+    <section>
+        <h2>📍 Shortest Path (Dijkstra)</h2>
+        <button onclick="loadNetworkExample()">Load Example</button>
+        <textarea id="networkInput" placeholder='{"nodes":["A","B","C"],"edges":[{"u":"A","v":"B","w":1},{"u":"B","v":"C","w":2},{"u":"A","v":"C","w":5}],"source":"A","target":"C"}'></textarea>
+        <button onclick="computePath()">Compute Path</button>
+        <div id="networkOutput"></div>
+    </section>
+
+    <!-- Platform Module -->
+    <section>
+        <h2>🚉 Platform Allocation (Greedy)</h2>
+        <div id="platformIntervals">
+            <div class="interval-row">
+                <input type="number" placeholder="Arrival" class="time-input">
+                <input type="number" placeholder="Departure" class="time-input">
+                <button onclick="removeInterval(this)">❌</button>
+            </div>
+        </div>
+        <button onclick="addInterval()">Add Train</button>
+        <button onclick="loadPlatformExample()">Load Example</button>
+        <button onclick="computePlatforms()">Compute Platforms</button>
+        <div id="platformOutput"></div>
+    </section>
+
+    <!-- Coach Module -->
+    <section>
+        <h2>🔍 Coach Fault (DLL)</h2>
+        <input id="coachIds" placeholder="Coach IDs (comma separated): C1,C2,C3" />
+        <label>Faulty index: <input type="number" id="faultyIndex" value="-1" min="-1" /></label>
+        <button onclick="loadCoachExample()">Load Example</button>
+        <button onclick="detectFault()">Detect Fault</button>
+        <div id="coachOutput"></div>
+    </section>
+
+    <!-- Safety Module -->
+    <section>
+        <h2>🛑 Safety Controller</h2>
+        <label>Position (km): <input type="number" id="safetyPosition" value="15" /></label><br>
+        <div id="unsafeZones">
+            <div class="zone-row">
+                <input type="number" placeholder="Start km" class="zone-input">
+                <input type="number" placeholder="End km" class="zone-input">
+                <button onclick="removeZone(this)">❌</button>
+            </div>
+        </div>
+        <button onclick="addZone()">Add Unsafe Zone</button>
+        <button onclick="loadSafetyExample()">Load Example</button>
+        <button onclick="safetyStop()">Emergency Stop</button>
+        <div id="safetyOutput"></div>
+    </section>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
