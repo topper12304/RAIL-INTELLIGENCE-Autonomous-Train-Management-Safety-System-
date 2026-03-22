@@ -18,3 +18,5 @@ def min_platforms(intervals: List[Tuple[int, int]]) -> int:
         current += delta
         max_platforms = max(max_platforms, current)
     return max_platforms
+
+"""notes for me: this sorting uses timsort which is mix of insertion and merge sort, and also is lexicographic, means if first values are equal go for the second parameters of it and so on.."""
